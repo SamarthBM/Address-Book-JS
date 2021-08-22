@@ -4,6 +4,7 @@
  * @author: Samarth BM.
  */
 
+const prompt = require('prompt-sync')();
 const UserMenu = require("./UserMenuData.js"); 
 const AddressBookService = require("./AddressBookData.js"); 
 
@@ -17,14 +18,18 @@ while( flag ) {
     let option = userMenu.menu();
     switch( option ) {
         case 1:
-            personInfoList = addressBookService.insert(personInfoList);
+            personInfoList = Array.from(addressBookService.insert(personInfoList));
             break;
         case 2:
             console.log(personInfoList);
             break;
         case 3:
+            let fname = prompt("Enter the First Name of the Contact : ");
+            personInfoList = addressBookService.editContact(personInfoList, fname);
+            break; 
+        case 4:
             flag = false;
-            break;    
+            break;       
         default:
             console.log("You have entered invalid input!");
             flag = false;
