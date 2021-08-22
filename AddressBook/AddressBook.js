@@ -6,10 +6,10 @@
 
 const prompt = require('prompt-sync')();
 const UserMenu = require("./UserMenuData.js"); 
-const AddressBookService = require("./AddressBookData.js"); 
+const AddressBookData = require("./AddressBookData.js"); 
 
 let userMenu = new UserMenu();
-let addressBookService = new AddressBookService();
+let addressBookData = new AddressBookData();
 let personInfoList = new Array();
 flag = true;
 
@@ -18,7 +18,7 @@ while( flag ) {
     let option = userMenu.menu();
     switch( option ) {
         case 1:
-            personInfoList = Array.from(addressBookService.insert(personInfoList));
+            personInfoList = Array.from(addressBookData.insert(personInfoList));
             console.log();
             break;
         case 2:
@@ -27,12 +27,12 @@ while( flag ) {
             break;
         case 3:
             let fname = prompt("Enter the First Name of the Contact : ");
-            personInfoList = addressBookService.editContact(personInfoList, fname);
+            personInfoList = addressBookData.editContact(personInfoList, fname);
             console.log();
             break; 
         case 4:
             let personName = prompt("Enter the First Name of the Contact : ");
-            personInfoList = addressBookService.deleteContact(personInfoList, personName);
+            personInfoList = addressBookData.deleteContact(personInfoList, personName);
             console.log();
             break; 
         case 5:
